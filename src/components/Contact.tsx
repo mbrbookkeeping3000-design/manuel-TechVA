@@ -3,35 +3,45 @@ import { Mail, MapPin, Send, CheckCircle2, Linkedin, Briefcase, Globe } from 'lu
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    projectType: '',
+    budget: '',
+    message: '',
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        access_key: 'e29e9127-72a5-462e-944d-16c601f00f48',
-        name: form.name,
-        email: form.email,
-        message: form.message,
-      }),
-    });
-    const result = await res.json();
-    if (result.success) {
-      setSent(true);
-      setTimeout(() => {
-        setSent(false);
-        setForm({ name: '', email: '', message: '' });
-      }, 4000);
-    } else {
+    e.preventDefault();
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'e29e9127-72a5-462e-944d-16c601f00f48',
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          project_type: form.projectType,
+          budget: form.budget,
+          message: form.message,
+        }),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setSent(true);
+        setTimeout(() => {
+          setSent(false);
+          setForm({ name: '', email: '', company: '', projectType: '', budget: '', message: '' });
+        }, 4000);
+      } else {
+        alert('Something went wrong. Please email me directly.');
+      }
+    } catch (error) {
       alert('Something went wrong. Please email me directly.');
     }
-  } catch (error) {
-    alert('Something went wrong. Please email me directly.');
-  }
-};
+  };
 
   const profiles = [
     {
@@ -56,6 +66,13 @@ export default function Contact() {
       bg: 'rgba(59,130,246,0.12)',
     },
   ];
+
+  const selectStyle = {
+    background: '#0d0d0d',
+    border: '1px solid #222',
+    color: '#f0f0f0',
+    fontFamily: 'var(--font-body)',
+  };
 
   return (
     <section id="contact" className="py-24 px-5 md:px-8">
@@ -87,7 +104,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-xs mb-0.5" style={{ color: '#555' }}>Email</p>
-                <a
+                
                   href="mailto:manuelr.aiautomation@gmail.com"
                   className="text-xs font-medium transition-colors"
                   style={{ color: '#ccc' }}
@@ -115,7 +132,7 @@ export default function Contact() {
 
             {/* Profile links */}
             {profiles.map((p) => (
-              <a
+              
                 key={p.label}
                 href={p.href}
                 target="_blank"
@@ -160,47 +177,94 @@ export default function Contact() {
 
           {/* form */}
           <form onSubmit={handleSubmit} className="md:col-span-3 card p-6 flex flex-col gap-4">
-            <div>
-              <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
-                Name
-              </label>
-              <input
-                type="text"
-                required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
-                style={{
-                  background: '#0d0d0d',
-                  border: '1px solid #222',
-                  color: '#f0f0f0',
-                  fontFamily: 'var(--font-body)',
-                }}
-                placeholder="Jane Doe"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
+                  style={selectStyle}
+                  placeholder="Jane Doe"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
+                  Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
+                  style={selectStyle}
+                  placeholder="jane@company.com"
+                />
+              </div>
             </div>
-            <div>
-              <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
-                Email
-              </label>
-              <input
-                type="email"
-                required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
-                style={{
-                  background: '#0d0d0d',
-                  border: '1px solid #222',
-                  color: '#f0f0f0',
-                  fontFamily: 'var(--font-body)',
-                }}
-                placeholder="jane@company.com"
-              />
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
+                  Company
+                </label>
+                <input
+                  type="text"
+                  value={form.company}
+                  onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
+                  style={selectStyle}
+                  placeholder="Company name"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
+                  Project Type
+                </label>
+                <select
+                  required
+                  value={form.projectType}
+                  onChange={(e) => setForm({ ...form, projectType: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
+                  style={selectStyle}
+                >
+                  <option value="">Select...</option>
+                  <option value="AI Agent / Chatbot">AI Agent / Chatbot</option>
+                  <option value="Workflow Automation">Workflow Automation</option>
+                  <option value="API / CRM Integration">API / CRM Integration</option>
+                  <option value="Content & Lead Ops">Content & Lead Ops</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </div>
+
             <div>
               <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
-                What's eating your time?
+                Budget Range
+              </label>
+              <select
+                required
+                value={form.budget}
+                onChange={(e) => setForm({ ...form, budget: e.target.value })}
+                className="w-full px-4 py-2.5 rounded-lg text-sm outline-none transition-colors"
+                style={selectStyle}
+              >
+                <option value="">Select...</option>
+                <option value="< $500">&lt; $500</option>
+                <option value="$500 - $2k">$500 – $2k</option>
+                <option value="$2k - $5k">$2k – $5k</option>
+                <option value="$5k+">$5k+</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="text-xs font-medium mb-1.5 block" style={{ color: '#888' }}>
+                Project Description
               </label>
               <textarea
                 required
@@ -208,15 +272,11 @@ export default function Contact() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-lg text-sm outline-none resize-none transition-colors"
-                style={{
-                  background: '#0d0d0d',
-                  border: '1px solid #222',
-                  color: '#f0f0f0',
-                  fontFamily: 'var(--font-body)',
-                }}
-                placeholder="We spend 10 hours a week manually syncing orders between..."
+                style={selectStyle}
+                placeholder="Tell me about the process you want to automate..."
               />
             </div>
+
             <button
               type="submit"
               className="btn-primary justify-center"
@@ -229,7 +289,7 @@ export default function Contact() {
                 </>
               ) : (
                 <>
-                  Send Message <Send size={15} />
+                  Send Project Details <Send size={15} />
                 </>
               )}
             </button>

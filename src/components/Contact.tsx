@@ -5,14 +5,33 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setForm({ name: '', email: '', message: '' });
-    }, 4000);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'e29e9127-72a5-462e-944d-16c601f00f48',
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      }),
+    });
+    const result = await res.json();
+    if (result.success) {
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        setForm({ name: '', email: '', message: '' });
+      }, 4000);
+    } else {
+      alert('Something went wrong. Please email me directly.');
+    }
+  } catch (error) {
+    alert('Something went wrong. Please email me directly.');
+  }
+};
 
   const profiles = [
     {

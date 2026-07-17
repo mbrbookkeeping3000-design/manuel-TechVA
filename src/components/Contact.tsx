@@ -104,7 +104,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-xs mb-0.5" style={{ color: '#555' }}>Email</p>
-                
+                <a
                   href="mailto:manuelr.aiautomation@gmail.com"
                   className="text-xs font-medium transition-colors"
                   style={{ color: '#ccc' }}
@@ -132,7 +132,7 @@ export default function Contact() {
 
             {/* Profile links */}
             {profiles.map((p) => (
-              
+              <a
                 key={p.label}
                 href={p.href}
                 target="_blank"

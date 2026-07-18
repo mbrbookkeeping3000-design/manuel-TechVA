@@ -66,7 +66,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 55% 60% at 75% 35%, rgba(249,115,22,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 15% 85%, rgba(45,212,191,0.05) 0%, transparent 60%)',
+            'radial-gradient(ellipse 55% 60% at 75% 35%, var(--glow-orange-soft) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 15% 85%, var(--glow-teal-soft) 0%, transparent 60%)',
         }}
       />
 
@@ -75,22 +75,15 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)',
+            'linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)',
           backgroundSize: '80px 80px',
         }}
       />
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
-        {/*
-          FIX: the right column (profile widget + floating cards) is a fixed
-          340px block. It no longer shares a 1fr track with the text column,
-          so it can never be squeezed into overlapping space. Left column
-          gets minmax(0,1fr) so it wraps safely inside whatever room is left.
-        */}
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_340px] gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           {/* LEFT */}
           <div
-            className="relative z-20 max-w-[480px]"
             style={{
               opacity: loaded ? 1 : 0,
               transform: loaded ? 'translateY(0)' : 'translateY(28px)',
@@ -113,8 +106,8 @@ export default function Hero() {
             <h1
               className="font-display font-bold leading-tight mb-3"
               style={{
-                fontSize: 'clamp(1.75rem, 3.4vw, 3.1rem)',
-                color: '#f0f0f0',
+                fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
+                color: 'var(--text)',
                 letterSpacing: '-0.025em',
               }}
             >
@@ -123,7 +116,7 @@ export default function Hero() {
             <h1
               className="font-display font-bold leading-tight mb-3"
               style={{
-                fontSize: 'clamp(1.75rem, 3.4vw, 3.1rem)',
+                fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
                 letterSpacing: '-0.025em',
                 minHeight: '1.2em',
               }}
@@ -134,8 +127,8 @@ export default function Hero() {
             <h1
               className="font-display font-bold leading-tight mb-7"
               style={{
-                fontSize: 'clamp(1.75rem, 3.4vw, 3.1rem)',
-                color: '#f0f0f0',
+                fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
+                color: 'var(--text)',
                 letterSpacing: '-0.025em',
               }}
             >
@@ -143,8 +136,8 @@ export default function Hero() {
             </h1>
 
             <p
-              className="text-base leading-relaxed mb-9 max-w-[440px]"
-              style={{ color: '#777', lineHeight: '1.75' }}
+              className="text-base leading-relaxed mb-9 max-w-[480px]"
+              style={{ color: 'var(--muted)', lineHeight: '1.75' }}
             >
               Tech VA and AI automation specialist based in Quezon City, PH.
               I design and deploy production pipelines with Zapier, n8n, Claude, and Gemini —
@@ -169,15 +162,14 @@ export default function Hero() {
 
           {/* RIGHT — profile */}
           <div
-            className="relative z-10 flex flex-col items-center shrink-0"
+            className="flex flex-col items-center lg:items-end gap-8"
             style={{
-              width: 340,
               opacity: loaded ? 1 : 0,
               transform: loaded ? 'translateY(0)' : 'translateY(20px)',
               transition: 'opacity 0.85s ease 0.2s, transform 0.85s ease 0.2s',
             }}
           >
-            <div className="relative flex items-center justify-center" style={{ width: 340, height: 340 }}>
+            <div className="relative flex items-center justify-center">
               {/* outer orbit ring */}
               <div
                 className="absolute rounded-full"
@@ -224,7 +216,7 @@ export default function Hero() {
               >
                 <div
                   className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 px-2.5 py-1 rounded-full text-xs font-semibold font-display"
-                  style={{ background: '#161616', border: '1px solid #2a2a2a', color: '#aaa', whiteSpace: 'nowrap', animation: 'spin-reverse 18s linear infinite' }}
+                  style={{ background: 'var(--bg-3)', border: '1px solid var(--border)', color: 'var(--text-3)', whiteSpace: 'nowrap', animation: 'spin-reverse 18s linear infinite' }}
                 >
                   n8n
                 </div>
@@ -238,7 +230,7 @@ export default function Hero() {
                   height: 248,
                   borderRadius: '50%',
                   border: '3px solid rgba(249,115,22,0.5)',
-                  boxShadow: '0 0 0 6px rgba(249,115,22,0.07), 0 0 40px rgba(249,115,22,0.12)',
+                  boxShadow: 'var(--shadow-card)',
                 }}
               >
                 <img
@@ -251,20 +243,20 @@ export default function Hero() {
               {/* Open to Work badge */}
               <div
                 className="absolute -bottom-3 left-1/2 -translate-x-1/2 card flex items-center gap-2 px-3 py-1.5"
-                style={{ whiteSpace: 'nowrap', background: '#111', borderColor: '#222' }}
+                style={{ whiteSpace: 'nowrap', background: 'var(--bg-3)', borderColor: 'var(--border)' }}
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: '#22c55e' }} />
                   <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: '#22c55e' }} />
                 </span>
-                <span className="text-xs font-medium" style={{ color: '#ccc' }}>Open to Work</span>
+                <span className="text-xs font-medium" style={{ color: 'var(--text-2)' }}>Open to Work</span>
               </div>
 
-              {/* floating tool card — top right (kept inside the 340px box) */}
+              {/* floating tool card — top right */}
               <div
-                className="absolute top-0 right-0 card p-3 flex items-center gap-2.5"
+                className="absolute -top-2 -right-4 card p-3 flex items-center gap-2.5"
                 style={{
-                  background: '#111',
+                  background: 'var(--bg-3)',
                   animation: 'floatY 4s ease-in-out infinite',
                 }}
               >
@@ -272,22 +264,22 @@ export default function Hero() {
                   <Zap size={13} style={{ color: '#f97316' }} />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold font-display" style={{ color: '#f0f0f0', lineHeight: 1.2 }}>Automation</p>
-                  <p className="text-xs" style={{ color: '#555' }}>Running 24/7</p>
+                  <p className="text-xs font-semibold font-display" style={{ color: 'var(--text)', lineHeight: 1.2 }}>Automation</p>
+                  <p className="text-xs" style={{ color: 'var(--subtle)' }}>Running 24/7</p>
                 </div>
               </div>
 
-              {/* floating saved hours card — left (kept inside the 340px box, not escaping it) */}
+              {/* floating saved hours card — left */}
               <div
-                className="absolute left-0 top-1/3 card p-3"
+                className="absolute -left-6 top-1/3 card p-3"
                 style={{
-                  background: '#111',
+                  background: 'var(--bg-3)',
                   animation: 'floatY 5s ease-in-out infinite 1.2s',
                 }}
               >
                 <p className="text-xs font-semibold font-display mb-0.5" style={{ color: '#2dd4bf' }}>Hours saved</p>
-                <p className="font-display font-bold" style={{ fontSize: '1.4rem', color: '#f0f0f0', lineHeight: 1 }}>240+</p>
-                <p className="text-xs mt-0.5" style={{ color: '#555' }}>per client / mo</p>
+                <p className="font-display font-bold" style={{ fontSize: '1.4rem', color: 'var(--text)', lineHeight: 1 }}>240+</p>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--subtle)' }}>per client / mo</p>
               </div>
             </div>
           </div>
@@ -299,7 +291,7 @@ export default function Hero() {
           style={{
             borderRadius: 14,
             overflow: 'hidden',
-            border: '1px solid #1f1f1f',
+            border: '1px solid var(--border-soft)',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(16px)',
             transition: 'opacity 1s ease 0.5s, transform 1s ease 0.5s',
@@ -310,8 +302,8 @@ export default function Hero() {
               key={s.label}
               className="px-7 py-7 flex flex-col gap-1 relative"
               style={{
-                background: '#0d0d0d',
-                borderRight: i < stats.length - 1 ? '1px solid #1a1a1a' : undefined,
+                background: 'var(--bg-2)',
+                borderRight: i < stats.length - 1 ? '1px solid var(--border-soft)' : undefined,
               }}
             >
               <span
@@ -320,7 +312,7 @@ export default function Hero() {
               >
                 {s.value}
               </span>
-              <span className="text-sm" style={{ color: '#555' }}>{s.label}</span>
+              <span className="text-sm" style={{ color: 'var(--subtle)' }}>{s.label}</span>
             </div>
           ))}
         </div>

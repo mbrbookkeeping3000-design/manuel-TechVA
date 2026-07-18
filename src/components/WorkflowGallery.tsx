@@ -6,12 +6,8 @@ import { useState, useEffect } from "react";
  * Vite + React component. Import it into a page/section file and render
  * <WorkflowGallery />.
  *
- * TO ADD YOUR REAL SCREENSHOTS:
- *   1. Put your 7 PNGs in /public/workflows/ (e.g. /public/workflows/fb-agent.png)
- *   2. In the WORKFLOWS array below, replace each `thumb: null` with the path,
- *      e.g. thumb: "/workflows/fb-agent.png"
- *   3. That's it — CardThumb below already renders a real <img> when `thumb`
- *      is set, and falls back to the animated node motif when it's null.
+ * Screenshots are served from /public/workflows/ — each `thumb` path below
+ * points to one of the 7 PNGs uploaded there.
  *
  * Edit the copy (pain, timeSaved, benefits, tools) freely — it's drafted
  * from what's visible in each workflow, not verified numbers.
@@ -35,7 +31,7 @@ const WORKFLOWS: Workflow[] = [
     title: "Facebook AI Agent",
     tagline: "Auto-replies to Facebook messages with an AI agent + memory",
     accent: "#4ADE80",
-    thumb: null,
+    thumb: "/workflows/fb-agent.png",
     pain: "Manually answering repetitive Facebook messages and comments eats hours every week.",
     timeSaved: "5–8 hrs / week",
     benefits: [
@@ -50,7 +46,7 @@ const WORKFLOWS: Workflow[] = [
     title: "Content Repurposing Engine",
     tagline: "One video in, four pieces of content out",
     accent: "#60A5FA",
-    thumb: null,
+    thumb: "/workflows/content-repurpose.png",
     pain: "Turning one video into multi-platform content used to take a full afternoon of writing and manual posting.",
     timeSaved: "4–6 hrs / video",
     benefits: [
@@ -65,7 +61,7 @@ const WORKFLOWS: Workflow[] = [
     title: "Messenger Knowledge Assistant",
     tagline: "Support agent that answers from your own knowledge base",
     accent: "#4ADE80",
-    thumb: null,
+    thumb: "/workflows/messenger-assistant.png",
     pain: "Customers wait hours for basic answers that are already sitting in your docs or FAQ.",
     timeSaved: "10+ hrs / week",
     benefits: [
@@ -80,7 +76,7 @@ const WORKFLOWS: Workflow[] = [
     title: "Job Scraper + Resume Optimizer",
     tagline: "Slack message in, tailored resume + proposal out",
     accent: "#F59E0B",
-    thumb: null,
+    thumb: "/workflows/job-scraper.png",
     pain: "Hours spent searching listings and rewriting a resume for every single application.",
     timeSaved: "3–5 hrs / session",
     benefits: [
@@ -95,7 +91,7 @@ const WORKFLOWS: Workflow[] = [
     title: "Email Attachment Sorter",
     tagline: "Attachments get described, filed, logged, and summarized",
     accent: "#60A5FA",
-    thumb: null,
+    thumb: "/workflows/email-sorter.png",
     pain: "Manually saving, naming, and tracking every attachment that comes through email.",
     timeSaved: "2–3 hrs / week",
     benefits: [
@@ -110,7 +106,7 @@ const WORKFLOWS: Workflow[] = [
     title: "Xero → Asana Reconciliation",
     tagline: "Bank data and task tracking stay in sync automatically",
     accent: "#C084FC",
-    thumb: null,
+    thumb: "/workflows/xero-asana.png",
     pain: "Manually cross-checking bank statements against project tracking every week.",
     timeSaved: "3–4 hrs / week",
     benefits: [
@@ -125,7 +121,7 @@ const WORKFLOWS: Workflow[] = [
     title: "ASMR Shorts Generator",
     tagline: "Fully automated daily video pipeline, prompt to publish",
     accent: "#F59E0B",
-    thumb: null,
+    thumb: "/workflows/asmr-video.png",
     pain: "Sourcing ideas, generating, and manually uploading short-form video every day.",
     timeSaved: "1–2 hrs / day",
     benefits: [

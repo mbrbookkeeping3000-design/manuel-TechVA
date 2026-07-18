@@ -8,7 +8,7 @@ const stats = [
   { value: '24h', label: 'Response & turnaround' },
 ];
 
-const tools = ['n8n', 'Zapier', 'Claude AI', 'Gemini', 'Make.com', 'OpenAI', 'ChatGPT', 'Claude AI'];
+const tools = ['n8n', 'Zapier', 'Claude AI', 'Gemini', 'Make.com', 'OpenAI'];
 
 const TYPING_PHRASES = ['boring workflows', 'manual data entry', 'repetitive tasks', 'slow handoffs'];
 
@@ -81,15 +81,9 @@ export default function Hero() {
       />
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
-        {/*
-          FIX: right column now sizes to its content (auto) instead of a forced 1fr,
-          so it can never be squeezed into the same width as the text column.
-          Left column gets minmax(0,1fr) so it wraps safely instead of overflowing.
-        */}
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_auto] gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           {/* LEFT */}
           <div
-            className="relative z-20 max-w-[480px]"
             style={{
               opacity: loaded ? 1 : 0,
               transform: loaded ? 'translateY(0)' : 'translateY(28px)',
@@ -112,7 +106,7 @@ export default function Hero() {
             <h1
               className="font-display font-bold leading-tight mb-3"
               style={{
-                fontSize: 'clamp(1.75rem, 3.4vw, 3.1rem)',
+                fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
                 color: '#f0f0f0',
                 letterSpacing: '-0.025em',
               }}
@@ -122,7 +116,7 @@ export default function Hero() {
             <h1
               className="font-display font-bold leading-tight mb-3"
               style={{
-                fontSize: 'clamp(1.75rem, 3.4vw, 3.1rem)',
+                fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
                 letterSpacing: '-0.025em',
                 minHeight: '1.2em',
               }}
@@ -133,7 +127,7 @@ export default function Hero() {
             <h1
               className="font-display font-bold leading-tight mb-7"
               style={{
-                fontSize: 'clamp(1.75rem, 3.4vw, 3.1rem)',
+                fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
                 color: '#f0f0f0',
                 letterSpacing: '-0.025em',
               }}
@@ -142,7 +136,7 @@ export default function Hero() {
             </h1>
 
             <p
-              className="text-base leading-relaxed mb-9 max-w-[440px]"
+              className="text-base leading-relaxed mb-9 max-w-[480px]"
               style={{ color: '#777', lineHeight: '1.75' }}
             >
               Tech VA and AI automation specialist based in Quezon City, PH.
@@ -168,15 +162,14 @@ export default function Hero() {
 
           {/* RIGHT — profile */}
           <div
-            className="relative z-10 flex flex-col items-center shrink-0 mx-auto"
+            className="flex flex-col items-center lg:items-end gap-8"
             style={{
-              width: 340,
               opacity: loaded ? 1 : 0,
               transform: loaded ? 'translateY(0)' : 'translateY(20px)',
               transition: 'opacity 0.85s ease 0.2s, transform 0.85s ease 0.2s',
             }}
           >
-            <div className="relative flex items-center justify-center" style={{ width: 340, height: 340 }}>
+            <div className="relative flex items-center justify-center">
               {/* outer orbit ring */}
               <div
                 className="absolute rounded-full"
@@ -259,9 +252,9 @@ export default function Hero() {
                 <span className="text-xs font-medium" style={{ color: '#ccc' }}>Open to Work</span>
               </div>
 
-              {/* floating tool card — top right (pulled inward so it can't cross into the text column) */}
+              {/* floating tool card — top right */}
               <div
-                className="absolute top-0 right-0 card p-3 flex items-center gap-2.5"
+                className="absolute -top-2 -right-4 card p-3 flex items-center gap-2.5"
                 style={{
                   background: '#111',
                   animation: 'floatY 4s ease-in-out infinite',
@@ -276,9 +269,9 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* floating saved hours card — left (kept inside the 340px box, not escaping it) */}
+              {/* floating saved hours card — left */}
               <div
-                className="absolute left-0 top-1/3 card p-3"
+                className="absolute -left-6 top-1/3 card p-3"
                 style={{
                   background: '#111',
                   animation: 'floatY 5s ease-in-out infinite 1.2s',
